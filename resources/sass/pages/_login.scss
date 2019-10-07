@@ -1,0 +1,21 @@
+.login {
+    align-items: center;
+    font-family: Nunito Sans;
+    margin-top: 10%;
+
+    &__card {
+
+        box-shadow: 0 6px 20px rgba(17,26,104,.15);
+        border: 0px !important;
+        border-radius: 8px !important;
+
+        &-title {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 0px !important;
+            background-color: #fff !important;
+            border-radius: 8px !important;
+        }
+    }
+}
