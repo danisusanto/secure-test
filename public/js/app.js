@@ -36986,8 +36986,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /opt/lampp7/htdocs/secure-test/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp7/htdocs/secure-test/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/dnsprogress/Niagahoster/7/secure-test/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/dnsprogress/Niagahoster/7/secure-test/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

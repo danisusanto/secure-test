@@ -18,6 +18,7 @@ class CreateSecureUserTable extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('verified')->default(0);
             $table->timestamps();
         });
     }
