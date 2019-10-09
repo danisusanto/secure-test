@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\storeProduct;
 use App\Http\Requests\UpdateProduct;
+use App\Services\ImgurService;
 use App\ProductModel;
 use GuzzleHttp\Client;
 
@@ -32,7 +33,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): object
     {
         return view('product.create');
     }
@@ -52,18 +53,8 @@ class ProductController extends Controller
             $product_model->author = strip_tags($request->input('author'));
             $product_model->description = $request->input('description');
             try {
-                $client = new Client();
-                $response = $client->request('POST', env('IMGUR_CLIENT_ENDPOINT'), [
-                        'headers' => [
-                            'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
-                            'content-type' => 'application/x-www-form-urlencoded',
-                        ],
-                        'form_params' => [
-                            'image' => base64_encode(file_get_contents($request->file('image')->path()))
-                        ],
-                ]);
-                $data = json_decode($response->getBody()->getContents(), TRUE);
-                $product_model->image = $data['data']['link'];
+                $imgur = new ImgurService();
+                $product_model->image = $imgur->upload($request);
                 $product_model->save();
                 return response()->json([
                     'status'    =>  true,
@@ -122,18 +113,8 @@ class ProductController extends Controller
         $product_model->description = $request->input('description');
         try {
             if($request->file('image')) {
-                $client = new Client();
-                $response = $client->request('POST', env('IMGUR_CLIENT_ENDPOINT'), [
-                        'headers' => [
-                            'authorization' => 'Client-ID ' . env('IMGUR_CLIENT_ID'),
-                            'content-type' => 'application/x-www-form-urlencoded',
-                        ],
-                        'form_params' => [
-                            'image' => base64_encode(file_get_contents($request->file('image')->path()))
-                        ],
-                ]);
-                $data = json_decode($response->getBody()->getContents(), TRUE);
-                $product_model->image = $data['data']['link'];
+                $imgur = new ImgurService();
+                $product_model->image = $imgur->upload($request);
             }
             $product_model->save();
             return response()->json([

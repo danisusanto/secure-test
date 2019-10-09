@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\storeUser;
 use App\UserModel;
 use App\Notifications\UserVerification;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
@@ -68,32 +69,8 @@ class AuthController extends Controller
     {
         $user_model = new UserModel();
         $user = $user_model->findByEmail($request->input('email'));
-        if($user) {
-            if (Hash::check($request->input('password'), $user->password)) {
-                if(!empty($user->verified)) {
-                    session(['user_id' => $user->id]);
-                    return response()->json([
-                        'status'    =>  true,
-                        'message'   =>  "Logged!"
-                    ]);
-                } else {
-                    return response()->json([
-                        'status'    =>  false,
-                        'message'   =>  "Your account not verified yet, check your email to verify!"
-                    ]);
-                }
-            } else {
-                return response()->json([
-                    'status'    =>  false,
-                    'message'   =>  "Wrong password!"
-                ]);
-            }
-        } else {
-            return response()->json([
-                'status'    =>  false,
-                'message'   =>  "Email not registered!"
-            ]);
-        }
+        $auth_service = new AuthService();
+        return $auth_service->login($user,$request);
     }
 
     public function LogoutAction(): object {
