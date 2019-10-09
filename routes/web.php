@@ -27,4 +27,9 @@ Route::group(['prefix'=>'/auth'], function() {
 
 Route::group(['prefix'=>'/product', 'middleware' => 'auth_middleware'], function() {
     Route::get('/', 'ProductController@index');
+    Route::get('/create', 'ProductController@create');
+    Route::post('/store', 'ProductController@store');
+    Route::get('/edit/{id}', 'ProductController@edit');
+    Route::post('/update/{id}', 'ProductController@update');
+    Route::delete('/destroy/{id}', 'ProductController@destroy');
 });

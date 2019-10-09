@@ -16,15 +16,15 @@
                         <form id="register-form">
                             <div class="form-group">
                                 <label for="">Username :</label>
-                                <input type="text" class="form-control" name="username" value="DNS Progress" required>
+                                <input type="text" class="form-control" name="username" value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Email :</label>
-                                <input type="email" class="form-control" name="email" value="danisusanto@niagahoster.co.id" required>
+                                <input type="email" class="form-control" name="email" value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Password :</label>
-                                <input type="password" class="form-control" name="password" value="acception" required>
+                                <input type="password" class="form-control" name="password" value="" required>
                             </div>
                             <div class="form-group text-center">
                                 <div class="spinner-grow d-none" role="status">
@@ -56,7 +56,7 @@
                         $(".spinner-grow").addClass("d-none");
                     } else {
                         $(".btn-primary").removeClass("d-none")
-                        $(".spinner-grow").addClass("d-none");;
+                        $(".spinner-grow").addClass("d-none");
                         if(message.message.errorInfo[0] == "23000") {
                             let html = "<span>Email already registered!<span>";
                             $(".alert-danger").removeClass("d-none");
@@ -79,6 +79,8 @@
                     html += "</ul>";
                     $(".alert-danger").removeClass("d-none");
                     $(".alert-danger").html(html);
+                    $(".btn-primary").removeClass("d-none")
+                    $(".spinner-grow").addClass("d-none");
                 })
             })
         })

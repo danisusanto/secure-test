@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,17 +14,17 @@ use App\Notifications\UserVerification;
 class AuthController extends Controller
 {
     
-    public function login()
+    public function login(): object
     {
         return view('auth.login');
     }
     
-    public function register()
+    public function register(): object
     {
         return view('auth.register');
     }
 
-    public function registerAction(storeUser $request)
+    public function registerAction(storeUser $request): object
     {
         if($request->validated()) {
             $password = Hash::make($request->input('password'), [
@@ -48,7 +50,7 @@ class AuthController extends Controller
         }
     }
 
-    public function verify($id=null, $username=null)
+    public function verify(int $id=null,$username=null)
     {
         if($id) {
             try {
@@ -62,7 +64,7 @@ class AuthController extends Controller
         return view('auth.verify');
     }
 
-    public function loginAction(Request $request)
+    public function loginAction(Request $request): object
     {
         $user_model = new UserModel();
         $user = $user_model->findByEmail($request->input('email'));
@@ -94,7 +96,7 @@ class AuthController extends Controller
         }
     }
 
-    public function LogoutAction() {
+    public function LogoutAction(): object {
         session()->flush();
         return redirect('auth/login');
     }

@@ -15,11 +15,11 @@
                         <form action="" id="login-form">
                             <div class="form-group">
                                 <label for="">Email :</label>
-                                <input type="email" class="form-control" name="email" value="danisusanto@niagahoster.co.id" required>
+                                <input type="email" class="form-control" name="email" value="" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Password :</label>
-                                <input type="password" class="form-control" name="password" value="acception" required>
+                                <input type="password" class="form-control" name="password" value="" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary form-control">LOGIN</button>
