@@ -108,8 +108,8 @@ class ProductController extends Controller
     public function update(UpdateProduct $request, int $id): object
     {
         $product_model = ProductModel::find($id);
-        $product_model->title = $request->input('title');
-        $product_model->author = $request->input('author');
+        $product_model->title = strip_tags($request->input('title'));
+        $product_model->author = strip_tags($request->input('author'));
         $product_model->description = $request->input('description');
         try {
             if($request->file('image')) {
